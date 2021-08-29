@@ -5,14 +5,14 @@ const API = '';
 let root = document.getElementById('root');
 
 const setHomeView = () => {
-    let res = HomeView();
-    root.innerHTML = res.html;
+    let res = HomeView(root, setGameView);
 }
 const setGameView = () => {
-    let res = GameView();
+    let res = GameView(root);
     root.innerHTML = res.html;
 }
 
 document.addEventListener('DOMContentLoaded', () => {
     console.log('hola mundo!');
+    setHomeView();
 });
