@@ -15,7 +15,7 @@ const HomeView = (context, startGame) => {
 
     let final_categories = {}
     for(let category in categories) {
-        final_categories[category] = false;
+        final_categories[categories[category]] = false;
     }
 
     let final_game_mode = 'random';
@@ -76,9 +76,9 @@ const HomeView = (context, startGame) => {
         return entry;
     }
 
-    const createCheckboxCategory = category =>{
+    const createCategoryCheckbox = category =>{
         let entry = document.createElement('div');
-        entry.setAttribute('value', category);
+        entry.setAttribute('value', categories[category]);
         entry.innerText = category;
         entry.onclick = handleEntryCategory;
         return entry;
@@ -94,7 +94,7 @@ const HomeView = (context, startGame) => {
     });
 
     for(let category in categories) {
-        let element = createCheckboxCategory(category);
+        let element = createCategoryCheckbox(category);
         form.appendChild(element);
     }
 
