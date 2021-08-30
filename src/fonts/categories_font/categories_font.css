@@ -1,0 +1,45 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('./icomoon.eot?ky7l');
+  src:  url('./icomoon.eot?ky7l#iefix') format('embedded-opentype'),
+    url('./icomoon.ttf?ky7l') format('truetype'),
+    url('./icomoon.woff?ky7l') format('woff'),
+    url('./icomoon.svg?ky7l#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-f_celebrities:before {
+  content: "\f005";
+}
+.icon-f_geography:before {
+  content: "\f0ac";
+}
+.icon-f_mythology:before {
+  content: "\f188";
+}
+.icon-f_history:before {
+  content: "\f19c";
+}
+.icon-f_animals:before {
+  content: "\f1b0";
+}
+.icon-f_sports:before {
+  content: "\f1e3";
+}
