@@ -1,16 +1,16 @@
 import { HomeView } from "./HomeView.js";
 import { GameView } from "./GameView.js";
 
-const API = '';
 let root = document.getElementById('root');
 
 const setHomeView = () => {
-    let res = HomeView(root, setGameView);
+    HomeView(root, setGameView);
 }
-const setGameView = () => {
-    let res = GameView(root);
-    root.innerHTML = res.html;
+const setGameView = data => {
+    GameView(root, data);
 }
+
+
 
 document.addEventListener('DOMContentLoaded', () => {
     console.log('hola mundo!');

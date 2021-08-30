@@ -3,10 +3,10 @@
  * @description Create home view
  * 
  * @param { HTMLElement } context 
- * @param { function } startGame 
+ * @param { function } setGameView 
  * @returns { object }
  */
-const HomeView = (context, startGame) => {
+const HomeView = (context, setGameView) => {
     /**
      * @description Constant names and values
      */
@@ -45,8 +45,8 @@ const HomeView = (context, startGame) => {
      */
     const handleSendForm = e => {
         e.preventDefault();
-        console.log(final_difficulty, final_categories, final_game_mode);
-        startGame();
+        // console.log(final_difficulty, final_categories, final_game_mode);
+        setGameView([final_difficulty, final_categories, final_game_mode]);
     }
 
     /**
@@ -210,11 +210,6 @@ const HomeView = (context, startGame) => {
      * @description Render views
      */
     context.appendChild(form);
-
-    
-    return {
-        element: form,
-    };
 }
 
 export { HomeView };
