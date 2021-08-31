@@ -2,6 +2,7 @@ import { HomeView } from "./HomeView.js";
 import { GameView } from "./GameView.js";
 
 let root = document.getElementById('root');
+let ui = document.getElementById('ui');
 
 /**
  * @description Create 'Home View'
@@ -13,7 +14,7 @@ const setHomeView = () => {
  * @description Create 'Game View'
  */
 const setGameView = data => {
-    GameView(root, data);
+    GameView(root, ui, data);
 }
 
 document.addEventListener('DOMContentLoaded', () => {

@@ -18,6 +18,12 @@ div {
     -webkit-tap-highlight-color: transparent;
 }
 
+#ui {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
 .container {
     min-height: 100vh;
     padding: 1rem 0 8rem;
