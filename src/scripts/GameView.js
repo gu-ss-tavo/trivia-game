@@ -1,8 +1,13 @@
+import QuestionElement from "./QuestionElement.js";
+
+/**
+ * @description Video game control;
+ * @param {HTMLElement} context 
+ * @param {[]} data 
+ */
 const GameView = (context, data) => {
     const API = 'https://opentdb.com/api.php?';
     const QUESTIONS_LENGTH = 15;
-
-    context.innerHTML = '';
 
     /**
      * @description Load game
@@ -10,8 +15,8 @@ const GameView = (context, data) => {
      */
     const LoadGame = data => {
         console.log(data);
-        fetchApi(createApiPaths(data)).then(questions => {
-            console.log(createQuestionLevel(questions));
+        fetchApi(createApiPaths()).then(questions => {
+            createGame(createQuestionLevel(questions));
         });
     }
     
@@ -20,7 +25,7 @@ const GameView = (context, data) => {
      * @param {[]} data 
      * @returns []
      */
-    const createApiPaths = data => {
+    const createApiPaths = () => {
         const [difficulty, categories] = data;
         let categories_res = [];
         
@@ -70,6 +75,31 @@ const GameView = (context, data) => {
             questions_res.push(questions[category][i]);
         }
         return questions_res;
+    }
+
+    /**
+     * @description Create game with defined questions
+     * @param {[]} questions 
+     */
+    const createGame = questions => {
+        let index = 0;
+        let errors = 0;
+
+        const correctAnswer = () => {
+            console.log('es correcto');
+            index++;
+        }
+        const incorrectAnswer = () => {
+            console.log('es incorrecto');
+            errors++;
+        }
+
+        const gameOver = () => {
+            console.log('errors:', errors);
+            console.log('preguntas:', index);
+        }
+        
+        QuestionElement(context, [correctAnswer, incorrectAnswer, gameOver], questions);
     }
 
     LoadGame(data);

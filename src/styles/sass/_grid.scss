@@ -4,6 +4,11 @@
     display: flex;
     flex-wrap: wrap;
 }
+.column {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
 .row.cen-x {
     justify-content: center;
 }
@@ -14,6 +19,18 @@
     justify-content: space-between;
 }
 .row.space-around {
+    justify-content: space-around;
+}
+.column.cen-x {
+    align-items: center;
+}
+.column.cen-y {
+    justify-content: center;
+}
+.column.between {
+    justify-content: space-between;
+}
+.column.space-around {
     justify-content: space-around;
 }
 /* * grid - column sizes */

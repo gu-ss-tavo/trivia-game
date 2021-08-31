@@ -45,6 +45,7 @@ const HomeView = (context, setGameView) => {
      */
     const handleSendForm = e => {
         e.preventDefault();
+        form.onsubmit = e => {e.preventDefault()};
         // console.log(final_difficulty, final_categories, final_game_mode);
         setGameView([final_difficulty, final_categories, final_game_mode]);
     }
