@@ -18,10 +18,23 @@ div {
     -webkit-tap-highlight-color: transparent;
 }
 
-#ui {
+#ui > div {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 2rem;
+    right: 2rem;
+
+    color: $c-easy;
+    font-size: 5rem;
+    font-weight: 700;
+    &.easy {
+        color: $c-easy;
+    }
+    &.normal {
+        color: $c-normal;
+    }
+    &.hard {
+        color: $c-hard;
+    }
 }
 
 .container {

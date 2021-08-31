@@ -1,4 +1,5 @@
 import QuestionElement from "./QuestionElement.js";
+import GameOverView from "./GameOverView.js";
 
 /**
  * @description Video game control;
@@ -12,9 +13,8 @@ const GameView = (context, ui, data) => {
     
     /**
      * @description Load game
-     * @param {[]} data 
      */
-    const LoadGame = data => {
+    const LoadGame = () => {
         fetchApi(createApiPaths()).then(questions => {
             createGame(createQuestionLevel(questions));
         });
@@ -86,8 +86,10 @@ const GameView = (context, ui, data) => {
         let index = 0;
         let errors = 0;
         let value = 0;
+        let end_game = false;
 
         const value_container = createUI();
+
         if(game_mode === game_modes[0]) {
             game_mode = game_modes[Math.ceil(Math.random() * 2)];
         }
@@ -97,21 +99,37 @@ const GameView = (context, ui, data) => {
             let interval = setInterval(() => {
                 value--;
                 value_container.innerText = value;
-                if(value <= 0) {
-                    gameOver();
+                
+                if(value <= 10) {
+                    value_container.classList = [];
+                    value_container.classList.add('hard');
+                }else if(value <= 20) {
+                    value_container.classList = [];
+                    value_container.classList.add('normal');
+                }else if(value <= 30) {
+                    value_container.classList = [];
+                    value_container.classList.add('easy');
+                }
+
+                if(value <= 0 || end_game) {
+                    if(!end_game) gameOver();
                     clearInterval(interval);
                 }
             }, 1000);
         }else if(game_mode === game_modes[2]) {
             value = 5;
+            value_container.classList.add('hard');
             value_container.innerText = value;
         }
         
-        
+        /**
+         * @description Event verification
+         */
         const correctAnswer = () => {
             index++;
             if(game_mode === game_modes[1]) {
                 value += 4;
+                value_container.innerText = value;
             }else if(game_mode === game_modes[2]) {
                 //
             }
@@ -120,27 +138,39 @@ const GameView = (context, ui, data) => {
             errors++;
             if(game_mode === game_modes[1]) {
                 value -= value > 3 ? 3 : 0;
+                value_container.innerText = value;
             }else if(game_mode === game_modes[2]) {
                 value -= 1;
+                if(value <= 3) value_container.classList.add('normal');
                 value_container.innerText = value;
                 if(value <= 0) gameOver();
             }
         }
-
+        /**
+         * @description Clean and load 'Game Over View'
+         */
         const gameOver = () => {
-            console.log('errors:', errors);
-            console.log('preguntas:', index);
+            end_game = true;
+            ui.innerHTML = '';
             context.innerHTML = '';
+            GameOverView(context, index, errors, data);
+
+            console.log('preguntas:', index);
+            console.log('errors:', errors);
         }
         
         QuestionElement(context, [correctAnswer, incorrectAnswer, gameOver], questions);
     }
-
+    /**
+     * @description Use the 'ui' element and generate one according to the game mode
+     * @returns HTMLElement
+     */
     const createUI = () => {
         let element = document.createElement('div');
         ui.appendChild(element);
         return element;
     }
-    LoadGame(data);
+
+    LoadGame();
 }
 export { GameView };
