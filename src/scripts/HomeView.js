@@ -151,7 +151,7 @@ const HomeView = (context, setGameView) => {
      * @description Creates and designs the form
      */
     let form = document.createElement('form');
-    form.classList.add('form-container', 'col-11', 'row', 'cen-x');
+    form.classList.add('form-container', 'col-11', 'column', 'cen-x');
     form.onsubmit = handleSendForm;
 
     /**
@@ -207,9 +207,14 @@ const HomeView = (context, setGameView) => {
     send_form.classList.add('col-12');
     form.appendChild(send_form);
 
+
+    const game_title = document.createElement('h1');
+    game_title.innerText = 'Trivia Game';
+
     /**
      * @description Render views
      */
+    context.appendChild(game_title);
     context.appendChild(form);
 }
 

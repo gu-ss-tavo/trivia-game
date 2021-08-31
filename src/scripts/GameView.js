@@ -86,11 +86,9 @@ const GameView = (context, data) => {
         let errors = 0;
 
         const correctAnswer = () => {
-            console.log('es correcto');
             index++;
         }
         const incorrectAnswer = () => {
-            console.log('es incorrecto');
             errors++;
         }
 

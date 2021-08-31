@@ -1,0 +1,62 @@
+.question-container {
+    position: relative;
+    & > h2 {
+        position: relative;
+        bottom: 2rem;
+
+        color: $c-easy;
+        font-size: 2.5rem;
+        text-align: center;
+    }
+    .question-multiple {
+        & > div {
+            cursor: pointer;
+            overflow: hidden;
+            margin: 1rem;
+            padding: .8rem 1.4rem;
+
+            background: $c-easy;
+            border-radius: 1rem;
+            
+            color: $c-dark-main;
+            font-size: 2rem;
+            font-weight: 700;
+            transition: all .1s;
+            &:hover {
+                background: $c-card-color;
+                box-shadow: 0 0 .2rem $c-card-color;
+            }
+            &.error {
+                background: $c-not;
+                box-shadow: 0 0 .5rem $c-not;
+                color: $c-light-main;
+            }
+        }
+    }
+    .question-boolean {
+        & > div {
+            cursor: pointer;
+            overflow: hidden;
+            margin: 1rem;
+            padding: .8rem 1.4rem;
+            
+            border-radius: 1rem;
+            
+            color: $c-dark-main;
+            font-size: 1.8rem;
+            font-weight: 700;
+            transition: all .1s;
+            &.error {
+                background: $c-not;
+                box-shadow: 0 0 .3rem $c-not;
+                color: $c-light-main;
+            }
+        }
+        .boolean-true {
+            background: $c-ok;
+        }
+        .boolean-false {
+            background: $c-hard;
+        }
+    }
+}

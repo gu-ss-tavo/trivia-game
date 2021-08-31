@@ -14,7 +14,7 @@ const QuestionElement = (context, events, questions, ini=0) => {
     const question_element = document.createElement('h2');
     const response_container = document.createElement('div');
     
-    element.classList.add('question-container', 'col-11', 'column', 'cen-x');
+    element.classList.add('question-container', 'col-11', 'column', 'cen-x', 'cen-y');
     
     question_element.classList.add('col-10');
     question_element.innerHTML = questions[ini].question;
@@ -34,9 +34,9 @@ const QuestionElement = (context, events, questions, ini=0) => {
             response_element.innerHTML = questions[ini].correct_answer;
         }
         
-        response_element.classList.add('col-4');
-        if(response_element.innerHTML === 'True') response_element.classList.add('bolean-true');
-        if(response_element.innerHTML === 'False') response_element.classList.add('bolean-false');
+        // response_element.classList.add('col-4');
+        if(response_element.innerHTML === 'True') response_element.classList.add('boolean-true');
+        if(response_element.innerHTML === 'False') response_element.classList.add('boolean-false');
 
         response_element.style.textAlign = 'center';
 
@@ -54,10 +54,11 @@ const QuestionElement = (context, events, questions, ini=0) => {
         if(correct) {
             setCorrectAnswer();
             if(next_question !== undefined)
-                QuestionElement(context, events, questions, ini+1);
+            QuestionElement(context, events, questions, ini+1);
             else 
-                setGameOver();
+            setGameOver();
         }else {
+            e.target.classList.add('error');
             setIncorrectAnswer();
         }
     }
