@@ -3,10 +3,13 @@ import GameOverView from "./GameOverView.js";
 
 /**
  * @description Video game control;
- * @param {HTMLElement} context 
- * @param {[]} data 
+ * @param { HTMLElement } context 
+ * @param { HTMLElement } ui
+ * @param { [] } data 
+ * @param { function } setter
  */
-const GameView = (context, ui, data) => {
+const GameView = (context, ui, data, setter) => {
+    const setHomeView = setter;
     const API = 'https://opentdb.com/api.php?';
     const QUESTIONS_LENGTH = 15;
     const game_modes = ['random', 'short time', 'survive'];
@@ -88,27 +91,28 @@ const GameView = (context, ui, data) => {
         let value = 0;
         let end_game = false;
 
-        const value_container = createUI();
+        const [value_element, question_element] = createUI();
+        question_element.innerText = index;
 
         if(game_mode === game_modes[0]) {
             game_mode = game_modes[Math.ceil(Math.random() * 2)];
         }
         if(game_mode === game_modes[1]) {
             value = 30;
-            value_container.innerText = value;
+            value_element.innerText = value;
             let interval = setInterval(() => {
                 value--;
-                value_container.innerText = value;
+                value_element.innerText = value;
                 
                 if(value <= 10) {
-                    value_container.classList = [];
-                    value_container.classList.add('hard');
+                    value_element.classList = ['value-element'];
+                    value_element.classList.add('hard');
                 }else if(value <= 20) {
-                    value_container.classList = [];
-                    value_container.classList.add('normal');
+                    value_element.classList = ['value-element'];
+                    value_element.classList.add('normal');
                 }else if(value <= 30) {
-                    value_container.classList = [];
-                    value_container.classList.add('easy');
+                    value_element.classList = ['value-element'];
+                    value_element.classList.add('easy');
                 }
 
                 if(value <= 0 || end_game) {
@@ -118,8 +122,8 @@ const GameView = (context, ui, data) => {
             }, 1000);
         }else if(game_mode === game_modes[2]) {
             value = 5;
-            value_container.classList.add('hard');
-            value_container.innerText = value;
+            value_element.classList.add('hard');
+            value_element.innerText = value;
         }
         
         /**
@@ -127,9 +131,10 @@ const GameView = (context, ui, data) => {
          */
         const correctAnswer = () => {
             index++;
+            question_element.innerText = index;
             if(game_mode === game_modes[1]) {
-                value += 4;
-                value_container.innerText = value;
+                value += 3;
+                value_element.innerText = value;
             }else if(game_mode === game_modes[2]) {
                 //
             }
@@ -138,11 +143,11 @@ const GameView = (context, ui, data) => {
             errors++;
             if(game_mode === game_modes[1]) {
                 value -= value > 3 ? 3 : 0;
-                value_container.innerText = value;
+                value_element.innerText = value;
             }else if(game_mode === game_modes[2]) {
                 value -= 1;
-                if(value <= 3) value_container.classList.add('normal');
-                value_container.innerText = value;
+                if(value <= 3) value_element.classList.add('normal');
+                value_element.innerText = value;
                 if(value <= 0) gameOver();
             }
         }
@@ -153,12 +158,12 @@ const GameView = (context, ui, data) => {
             end_game = true;
             ui.innerHTML = '';
             context.innerHTML = '';
-            GameOverView(context, index, errors, data);
+            GameOverView(context, index, errors, data, setHomeView);
 
             console.log('preguntas:', index);
             console.log('errors:', errors);
         }
-        
+        context.classList.remove('home');
         QuestionElement(context, [correctAnswer, incorrectAnswer, gameOver], questions);
     }
     /**
@@ -166,11 +171,16 @@ const GameView = (context, ui, data) => {
      * @returns HTMLElement
      */
     const createUI = () => {
-        let element = document.createElement('div');
-        ui.appendChild(element);
-        return element;
-    }
+        let value_element = document.createElement('div');
+        let question_element = document.createElement('div');
 
+        value_element.classList.add('value-element');
+        question_element.classList.add('question-element');
+
+        ui.appendChild(value_element);
+        ui.appendChild(question_element);
+        return [value_element, question_element];
+    }
     LoadGame();
 }
 export { GameView };

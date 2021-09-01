@@ -14,7 +14,7 @@ const setHomeView = () => {
  * @description Create 'Game View'
  */
 const setGameView = data => {
-    GameView(root, ui, data);
+    GameView(root, ui, data, setHomeView);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
