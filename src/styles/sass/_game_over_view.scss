@@ -1,0 +1,70 @@
+.game-over-container {
+    align-content: flex-start;
+    & > h2 {
+        margin: 2rem 0;
+        color: $c-light-main;
+        font-size: 4rem;
+    }
+    .difficulty-container {
+        margin-bottom: 2rem;
+        * {
+            width: 50%;
+        }
+        h2 {
+            align-self: center;
+            color: $c-easy;
+            font-size: 2.8rem;
+        }
+        div {
+            align-self: center;
+            color: $c-light-main;
+            font-size: 2.2rem;
+        }
+    }
+    .questions-container {
+        margin-bottom: 2rem;
+        * {
+            width: 50%;
+        }
+        h2 {
+            align-self: center;
+            color: $c-ok;
+            font-size: 3rem;
+        }
+        div {
+            align-self: center;
+            color: $c-light-main;
+            font-size: 2.4rem;
+        }
+    }
+    .errors-container {
+        margin-bottom: 2rem;
+        * {
+            width: 50%;
+        }
+        h2 {
+            align-self: center;
+            color: $c-not;
+            font-size: 3rem;
+        }
+        div {
+            align-self: center;
+            color: $c-light-main;
+            font-size: 2.4rem;
+        }
+    }
+    button {
+        padding: .8rem 2rem;
+        background: $c-ok;
+        border: none;
+        border-radius: 1rem;
+        color: $c-light-main;
+        font-size: 2rem;
+        font-weight: 700;
+        transition: all .1s;
+        &:hover {
+            background: $c-light-main;
+            color: $c-dark-main;
+        }
+    }
+}

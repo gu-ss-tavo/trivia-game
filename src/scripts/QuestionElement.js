@@ -14,7 +14,7 @@ const QuestionElement = (context, events, questions, ini=0) => {
     const question_element = document.createElement('h2');
     const response_container = document.createElement('div');
     
-    element.classList.add('question-container', 'col-11', 'column', 'cen-x', 'cen-y');
+    element.classList.add('question-container', 'col-11', 'col-md-10', 'col-lg-8', 'column', 'cen-x', 'cen-y');
     
     question_element.classList.add('col-10');
     question_element.innerHTML = questions[ini].question;

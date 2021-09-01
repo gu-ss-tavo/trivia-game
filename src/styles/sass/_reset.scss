@@ -27,6 +27,8 @@ div {
         color: $c-easy;
         font-size: 5rem;
         font-weight: 700;
+
+        transition: all .1s;
         &.easy {
             color: $c-easy;
         }
@@ -41,10 +43,21 @@ div {
         position: absolute;
         top: 2rem;
         left: 2rem;
-    
+        
         color: $c-ok;
         font-size: 5rem;
         font-weight: 700;
+        transition: all .1s;
+    }
+    @media screen and (min-width: 576px) {
+        .value-element {
+            top: 4rem;
+            right: 6rem;
+        }
+        .question-element {
+            top: 4rem;
+            left: 6rem;
+        }
     }
 }
 
